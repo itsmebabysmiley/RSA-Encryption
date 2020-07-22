@@ -1,73 +1,117 @@
 RSA encyption
+-----------------------------
+p and q
+n = p*q
+z = (p-1)*(q-1)
+e<n, e and z is relative prime //e คือค่าที่หาร  z ไม่ลงตัว 
+e*d mod z = 1
+d = (z *k+1)/e ;k>0
+*** d can be any number and d has to be an integer and d has to come from equation above. ***
+Private key is (n,d)
+Public key is (n,e)
+Encrypt : C = msg^e mod n 
+Decrypt : msg = C^d mod n
+-----------------------------
+Example
+Give p = 43, q = 59
+Find 
+1. public key, private key
+2. encypt meassage and decypt meassage ( meassage is 103)
 
-p = 43, q = 59
 n = q*p = 2537
 z = (p-1)*(q-1) = 2436
-0<e<z e and z is relative prime
-e*d mod z = 1
-e = 17
+e = 17 (2436 mod 17 != 0) ( e cand be any number but e<n, e and z is relative prime)
 d = (z *k+1)/e
 d = (2436 * k+1)/17 //k=10
 -----------------------------
+#use to find d in private key
+#i is k and k >0
 for i in range(0,1000):
     d = (2436 * i+1)/17
-    if x.is_integer():
-        print(x)
+    #d has to be integer if this condition doesn't work try to increase loop range
+    if d.is_integer():
+        print(d)
         break
+
 -----------------------------
 d = 1433
 
 Private key is (n,d) = (2537,1433)
 Public key is (n,e) = (2537,17)
 
-Data(T) : 103
-Encrypt : C = T^e mod n 
+Data(msg) : 103
+Encrypt : C = msg^e mod n 
 	    = 496
-Decrypt : T = C^d mod n
+Decrypt : T = msg^d mod n
 	    = 103
+
 ---------------------------------------
 #ass game
 find decypted message given private key
 private key (2537,5)
 encypt = 995
+#Solution
 decypt : msg = encypt ^ d mod n
-995 ^ 5 mod 2537
-decypt = 36
+	       995 ^ 5 mod 2537
+	 msg = 36
+
 ---------------------------------------
 #ass game
-find d?
+find value of d?
 public key  (589,23)
 private key (589,d)
-1.#find p and q
+#solution
+we know: 
+n = 589
+e = 23
+we need to find p,q and z
 
+1.find p and q
+p and q have to be prime number.
+---------------------------------------
+#find all prime number 
 a =[2]
-for i in range(0,100):
+for i in range(0,100): #0-99
     if i>1:
         for j in range(2,i):
             if(i%j) == 0:
                 break
+	    #if i is a prime number append i in list.
             else:
-                a.append(i)
+                a.append(i) 
                 break
+#find p and q How? we know n = 589 and n = p*q
 for i in a:
     for j in a:
-        x = i * j
+        x = i * j 
+	#if i*j equal to n. It means i and j are p and q. 
         if x == 589:
             print(i,j)
-
+--------------------------------------
 p = 19
 q = 31
 
-2.#find z and e already know.
-z = 540
-e = 23
 
-3.#find d 
-d = (z *k+1)/e
-d = (540 * k+1)/23 //k=2
+2.find z
+z = (p-1)*(q-1) = 540
+
+
+3.find d from e*d mod z = 1
+e*d mod z = 1 --> d = (z *k+1)/e //เปลี่ยนรูป
+we know
+z = 540
+e = 23 (They already give e from public key)
+find d from d = (z *k+1)/e
+d = (540 * k+1)/23
+// k can be any number that make d an integer.
+--------------------------------------
+#find d
+#i is k; k>0
 for i in range(0,1000):
     d = (540 * i+1)/23
-    if d.is_integer():
+    #d has to be integer if this condition doesn't work try to increase loop range
+    if d.is_integer(): 
         print(d)
         break
-d =47
+--------------------------------------
+d = 47
