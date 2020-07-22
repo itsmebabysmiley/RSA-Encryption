@@ -1,0 +1,73 @@
+RSA encyption
+
+p = 43, q = 59
+n = q*p = 2537
+z = (p-1)*(q-1) = 2436
+0<e<z e and z is relative prime
+e*d mod z = 1
+e = 17
+d = (z *k+1)/e
+d = (2436 * k+1)/17 //k=10
+-----------------------------
+for i in range(0,1000):
+    d = (2436 * i+1)/17
+    if x.is_integer():
+        print(x)
+        break
+-----------------------------
+d = 1433
+
+Private key is (n,d) = (2537,1433)
+Public key is (n,e) = (2537,17)
+
+Data(T) : 103
+Encrypt : C = T^e mod n 
+	    = 496
+Decrypt : T = C^d mod n
+	    = 103
+---------------------------------------
+#ass game
+find decypted message given private key
+private key (2537,5)
+encypt = 995
+decypt : msg = encypt ^ d mod n
+995 ^ 5 mod 2537
+decypt = 36
+---------------------------------------
+#ass game
+find d?
+public key  (589,23)
+private key (589,d)
+1.#find p and q
+
+a =[2]
+for i in range(0,100):
+    if i>1:
+        for j in range(2,i):
+            if(i%j) == 0:
+                break
+            else:
+                a.append(i)
+                break
+for i in a:
+    for j in a:
+        x = i * j
+        if x == 589:
+            print(i,j)
+
+p = 19
+q = 31
+
+2.#find z and e already know.
+z = 540
+e = 23
+
+3.#find d 
+d = (z *k+1)/e
+d = (540 * k+1)/23 //k=2
+for i in range(0,1000):
+    d = (540 * i+1)/23
+    if d.is_integer():
+        print(d)
+        break
+d =47
